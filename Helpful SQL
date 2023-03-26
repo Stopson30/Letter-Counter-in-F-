@@ -1,0 +1,8 @@
+SELECT
+  customer_id,
+  order_date,
+  SUM(order_total) OVER (PARTITION BY customer_id ORDER BY order_date) as running_total
+FROM
+  orders
+HAVING
+  running_total > 1000;
